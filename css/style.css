@@ -1,0 +1,866 @@
+/* ========================================================
+   1. RESET & BASE RULES
+   ======================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #ffffff;
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ปรับให้ขยายเต็มหน้าจอ 100% ไม่เว้นขอบข้าง */
+.site-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========================================================
+   2. SHARED TOP HEADER (MENU CENTER SYSTEM)
+   ======================================================== */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  min-height: 52px;
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header-logo {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.nav-links-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links-center a {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #888888;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-links-center a:hover,
+.nav-links-center a.active {
+  color: #111111;
+}
+
+.nav-links-center a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #111111;
+}
+
+.header-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-bar {
+  display: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: #888888;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.header-menu {
+  letter-spacing: 2px;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ========================================================
+   3. MOBILE DEFAULT (< 768px) -> ทุก Grid เป็น 2 คอลัมน์
+   ======================================================== */
+.brand-hero {
+  padding: 40px 16px 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.brand-title {
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid #111111;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+}
+
+.filter-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.filter-item:nth-child(2n) {
+  border-right: none;
+}
+
+/* HOME GRID: มือถือ 2 คอลัมน์ */
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+}
+
+.grid-card {
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+}
+
+.grid-card:nth-child(2n) {
+  border-right: none;
+}
+
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.toy-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.08));
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 14px;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+}
+
+.item-name {
+  font-weight: 700;
+  color: #555555;
+  text-transform: uppercase;
+}
+
+.item-spec {
+  font-weight: 700;
+  color: #111111;
+  text-transform: uppercase;
+}
+
+/* STORY HERO & OVERVIEW */
+.story-hero,
+.collection-hero-banner,
+.about-hero-section {
+  padding: 40px 20px 24px;
+  border-bottom: 1px solid #111111;
+  background-color: #fafafa;
+}
+
+.sub-label {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: #777777;
+  margin-bottom: 12px;
+}
+
+.story-headline {
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.story-overview {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 32px 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.highlight-text {
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #111111;
+}
+
+.overview-body p {
+  font-size: 0.9rem;
+  color: #555555;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.stat-badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  border-top: 1px solid #eeeeee;
+  padding-top: 20px;
+}
+
+.stat-number {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.stat-title {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #888888;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+.section-divider-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #111111;
+  color: #ffffff;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+}
+
+/* STORY CHAPTER GRID: มือถือ 2 คอลัมน์ */
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+}
+
+.chapter-card {
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+}
+
+.chapter-card:nth-child(2n) {
+  border-right: none;
+}
+
+.chapter-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  margin-bottom: 14px;
+}
+
+.chapter-num {
+  font-weight: 700;
+  color: #111111;
+}
+
+.chapter-tag {
+  color: #888888;
+  background-color: #f2f2f2;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.chapter-img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background-color: #fafafa;
+  margin-bottom: 16px;
+  border: 1px solid #f0f0f0;
+}
+
+.chapter-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.08));
+}
+
+.chapter-info h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.chapter-info p {
+  font-size: 0.8rem;
+  color: #555555;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.chapter-bullet {
+  list-style: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: #777777;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.story-quote {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.story-quote blockquote {
+  font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  max-width: 800px;
+  margin: 0 auto 16px;
+}
+
+.story-quote cite {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #888888;
+  letter-spacing: 0.1em;
+}
+
+/* COLLECTION DETAIL & ABOUT */
+.collection-detail-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+}
+
+.detail-visual {
+  background-color: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-img {
+  max-width: 240px;
+  max-height: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 20px rgba(0, 0, 0, 0.09));
+}
+
+.detail-content {
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-header-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  margin-bottom: 12px;
+}
+
+.detail-tag {
+  font-weight: 700;
+  color: #111111;
+}
+
+.detail-year {
+  color: #777777;
+}
+
+.detail-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.detail-desc {
+  font-size: 0.9rem;
+  color: #555555;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.specs-table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 20px;
+  border-top: 1px solid #eeeeee;
+  padding-top: 20px;
+}
+
+.spec-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spec-k {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  color: #888888;
+  letter-spacing: 0.08em;
+}
+
+.spec-v {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.about-statement-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 32px 20px;
+  gap: 36px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.about-lead-title {
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.about-info-box {
+  background-color: #fafafa;
+  border: 1px solid #eeeeee;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-k {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  color: #888888;
+  letter-spacing: 0.06em;
+  margin-top: 8px;
+}
+
+.info-k:first-child {
+  margin-top: 0;
+}
+
+.info-v {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.about-right-pane h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+
+.about-right-pane h3:first-child {
+  margin-top: 0;
+}
+
+.about-right-pane p {
+  font-size: 0.9rem;
+  color: #555555;
+  line-height: 1.7;
+}
+
+.design-principles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+  border-top: 1px solid #eeeeee;
+  padding-top: 24px;
+}
+
+.principle-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.principle-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.principle-item strong {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.principle-item p {
+  font-size: 0.82rem;
+  color: #666666;
+  margin: 0;
+}
+
+/* FOOTER */
+.site-footer {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 40px 20px 24px;
+  width: 100%;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #222222;
+}
+
+.footer-col h4 {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.newsletter-col .input-line {
+  color: #555555;
+  font-size: 1.1rem;
+}
+
+.links-col ul {
+  list-style: none;
+}
+
+.links-col li {
+  margin-bottom: 8px;
+}
+
+.links-col a {
+  text-decoration: none;
+  color: #777777;
+  font-size: 0.65rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  font-size: 0.58rem;
+  color: #666666;
+}
+
+.social-icons span {
+  margin-right: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ========================================================
+   4. TABLET BREAKPOINT (≥ 768px) -> ทุก Grid เป็น 3 คอลัมน์
+   ======================================================== */
+@media (min-width: 768px) {
+  .top-header {
+    padding: 18px 36px;
+  }
+
+  .nav-links-center {
+    gap: 32px;
+  }
+
+  .search-bar {
+    display: inline-block;
+  }
+
+  .header-right {
+    gap: 20px;
+  }
+
+  .filter-bar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .filter-item {
+    border-bottom: none;
+  }
+
+  .filter-item:nth-child(2n) {
+    border-right: 1px solid #e5e5e5;
+  }
+
+  .filter-item:last-child {
+    border-right: none;
+  }
+
+  /* HOME: 3 คอลัมน์ */
+  .collection-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-card:nth-child(2n) {
+    border-right: 1px solid #e5e5e5;
+  }
+
+  .grid-card:nth-child(3n) {
+    border-right: none;
+  }
+
+  .card-details {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .story-overview {
+    grid-template-columns: 1fr 1fr;
+    padding: 48px 36px;
+    gap: 40px;
+  }
+
+  .section-divider-bar {
+    padding: 14px 36px;
+  }
+
+  /* STORY: 3 คอลัมน์ */
+  .chapter-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chapter-card:nth-child(2n) {
+    border-right: 1px solid #e5e5e5;
+  }
+
+  .chapter-card:nth-child(3n) {
+    border-right: none;
+  }
+
+  .detail-row {
+    grid-template-columns: 360px 1fr;
+  }
+
+  .detail-visual {
+    border-bottom: none;
+    border-right: 1px solid #e5e5e5;
+    padding: 48px;
+  }
+
+  .detail-content {
+    padding: 40px 36px;
+  }
+
+  .specs-table {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .about-statement-grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 48px 36px;
+    gap: 48px;
+  }
+
+  .footer-top {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* ========================================================
+   5. DESKTOP BREAKPOINT (≥ 1024px) -> ทุก Grid เป็น 4 คอลัมน์
+   ======================================================== */
+@media (min-width: 1024px) {
+  .top-header {
+    padding: 20px 48px;
+  }
+
+  .nav-links-center {
+    gap: 40px;
+  }
+
+  .header-right {
+    gap: 24px;
+  }
+
+  .brand-hero {
+    padding: 70px 24px 50px;
+  }
+
+  /* HOME: 4 คอลัมน์ */
+  .collection-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-card {
+    padding: 30px 24px 24px;
+    border-right: 1px solid #e5e5e5;
+  }
+
+  .grid-card:nth-child(3n) {
+    border-right: 1px solid #e5e5e5;
+  }
+
+  .grid-card:nth-child(4n) {
+    border-right: none;
+  }
+
+  .story-hero,
+  .collection-hero-banner,
+  .about-hero-section {
+    padding: 70px 48px 40px;
+  }
+
+  .story-overview {
+    padding: 60px 48px;
+    gap: 60px;
+  }
+
+  .section-divider-bar {
+    padding: 16px 48px;
+  }
+
+  /* STORY: 4 คอลัมน์ */
+  .chapter-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .chapter-card {
+    padding: 30px 24px;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: none;
+  }
+
+  .chapter-card:nth-child(3n) {
+    border-right: 1px solid #e5e5e5;
+  }
+
+  .chapter-card:nth-child(4n) {
+    border-right: none;
+  }
+
+  .detail-row {
+    grid-template-columns: 460px 1fr;
+  }
+
+  .detail-content {
+    padding: 56px 48px;
+  }
+
+  .about-statement-grid {
+    padding: 60px 48px;
+    gap: 64px;
+  }
+
+  .site-footer {
+    padding: 60px 48px 30px;
+  }
+}
