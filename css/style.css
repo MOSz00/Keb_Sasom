@@ -129,7 +129,7 @@ a {
 }
 
 /* ========================================================
-   3. MOBILE DEFAULT (< 768px) -> ทุก Grid 2 คอลัมน์ ไม่เว้นขอบ
+   3. MOBILE DEFAULT (< 768px)
    ======================================================== */
 .brand-hero {
   padding: 36px 12px 28px;
@@ -137,13 +137,35 @@ a {
   width: 100%;
 }
 
+/* หัวข้อเปลี่ยนฟอนต์เป็น Chillax + อนิเมชันเด้งขึ้นตอนเปิดเว็บ */
 .brand-title {
+  font-family: 'Chillax', sans-serif; /* เปลี่ยนฟอนต์เป็น Chillax */
   font-size: clamp(1.8rem, 5.5vw, 4.5rem);
-  font-weight: 900;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  line-height: 1.05;
+  line-height: 1.1;
   word-break: break-word;
+  
+  /* เพิ่ม Entrance Animation */
+  animation: popBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  will-change: transform, opacity;
+}
+
+/* Keyframes สำหรับอนิเมชันเด้งขึ้น (Smooth Pop Bounce) */
+@keyframes popBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(35px) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .filter-bar {
@@ -215,7 +237,6 @@ a {
   overflow: hidden;
 }
 
-/* ลูกเล่นรูปภาพขยับเมื่อชี้เมาส์ (Hover Animation) */
 .toy-image {
   max-width: 100%;
   max-height: 100%;
