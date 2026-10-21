@@ -27,8 +27,12 @@
       </nav>
 
       <div class="header-right">
-        <span class="search-bar">TYPE TO SEARCH</span>
-        <span class="header-menu">•••</span>
+        <div class="search-wrapper" id="searchWrapper">
+          <span class="search-bar" id="searchTrigger">TYPE TO SEARCH</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="SEARCH TITLE..." autocomplete="off">
+          <button type="button" id="searchClose" class="search-close-btn" aria-label="Close search">&times;</button>
+        </div>
+        <button type="button" class="header-menu" id="menuToggle" aria-label="Open menu">•••</button>
       </div>
     </header>
 
@@ -245,6 +249,32 @@
     </footer>
 
   </div>
+
+  <!-- Quick Drawer -->
+  <aside class="quick-drawer" id="quickDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-title">ARCHIVE CONTROL // V.1</span>
+      <button type="button" class="drawer-close" id="drawerClose">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-stat">
+        <span class="stat-k">TOTAL TOYS</span>
+        <span class="stat-v">8 ITEMS</span>
+      </div>
+      <div class="drawer-stat">
+        <span class="stat-k">CURRENT PAGE</span>
+        <span class="stat-v">03 // COLLECTION</span>
+      </div>
+      <div class="drawer-nav">
+        <span class="drawer-section-label">PAGE JUMP</span>
+        <a href="index.html">01 // CATALOG HOME</a>
+        <a href="story.html">02 // STORY CHRONICLES</a>
+        <a href="collection.html">03 // TECHNICAL SPEC</a>
+        <a href="about.html">04 // CURATOR PHILOSOPHY</a>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
 
   <script src="js/main.js"></script>
 </body>

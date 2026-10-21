@@ -28,8 +28,14 @@
       </nav>
 
       <div class="header-right">
-        <span class="search-bar">TYPE TO SEARCH</span>
-        <span class="header-menu">•••</span>
+        <!-- Search Trigger / Interactive Input -->
+        <div class="search-wrapper" id="searchWrapper">
+          <span class="search-bar" id="searchTrigger">TYPE TO SEARCH</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="SEARCH TITLE / SPEC..." autocomplete="off">
+          <button type="button" id="searchClose" class="search-close-btn" aria-label="Close search">&times;</button>
+        </div>
+        <!-- 3-Dots Button -->
+        <button type="button" class="header-menu" id="menuToggle" aria-label="Open menu">•••</button>
       </div>
     </header>
 
@@ -38,31 +44,79 @@
       <h1 class="brand-title">My Art(Toy)<br>COLLECTION</h1>
     </section>
 
-    <!-- 3. Filter Bar -->
-    <nav class="filter-bar">
-      <div class="filter-item">
-        <span>CATEGORY</span>
-        <span class="chevron">⌄</span>
+    <!-- 3. Filter Bar พร้อม Dropdown Items -->
+    <nav class="filter-bar" id="filterBar">
+      <!-- Category -->
+      <div class="filter-item" data-filter-type="category">
+        <div class="filter-trigger">
+          <span class="filter-label">CATEGORY</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="filter-dropdown">
+          <button type="button" class="dropdown-opt active" data-filter="all">ALL CATEGORIES</button>
+          <button type="button" class="dropdown-opt" data-filter="vinyl">VINYL FIGURE</button>
+          <button type="button" class="dropdown-opt" data-filter="plush">PLUSH / FLOCKED</button>
+          <button type="button" class="dropdown-opt" data-filter="dissected">DISSECTED / ABS</button>
+        </div>
       </div>
-      <div class="filter-item">
-        <span>SERIES</span>
-        <span class="chevron">⌄</span>
+
+      <!-- Series -->
+      <div class="filter-item" data-filter-type="series">
+        <div class="filter-trigger">
+          <span class="filter-label">SERIES</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="filter-dropdown">
+          <button type="button" class="dropdown-opt active" data-filter="all">ALL SERIES</button>
+          <button type="button" class="dropdown-opt" data-filter="companion">COMPANION</button>
+          <button type="button" class="dropdown-opt" data-filter="share">SHARE</button>
+          <button type="button" class="dropdown-opt" data-filter="holiday">HOLIDAY</button>
+          <button type="button" class="dropdown-opt" data-filter="collab">COLLAB (BE@RBRICK / ASTRO)</button>
+        </div>
       </div>
-      <div class="filter-item">
-        <span>EDITION</span>
-        <span class="chevron">⌄</span>
+
+      <!-- Edition -->
+      <div class="filter-item" data-filter-type="edition">
+        <div class="filter-trigger">
+          <span class="filter-label">EDITION</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="filter-dropdown">
+          <button type="button" class="dropdown-opt active" data-filter="all">ALL EDITIONS</button>
+          <button type="button" class="dropdown-opt" data-filter="open">OPEN EDITION</button>
+          <button type="button" class="dropdown-opt" data-filter="limited">LIMITED / SPECIAL</button>
+        </div>
       </div>
-      <div class="filter-item">
-        <span>YEAR</span>
-        <span class="chevron">⌄</span>
+
+      <!-- Year -->
+      <div class="filter-item" data-filter-type="year">
+        <div class="filter-trigger">
+          <span class="filter-label">YEAR</span>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="filter-dropdown">
+          <button type="button" class="dropdown-opt active" data-filter="all">ALL YEARS</button>
+          <button type="button" class="dropdown-opt" data-filter="2013">2013</button>
+          <button type="button" class="dropdown-opt" data-filter="2016">2016</button>
+          <button type="button" class="dropdown-opt" data-filter="2018">2018</button>
+          <button type="button" class="dropdown-opt" data-filter="2019">2019</button>
+          <button type="button" class="dropdown-opt" data-filter="2020">2020</button>
+          <button type="button" class="dropdown-opt" data-filter="2021">2021</button>
+        </div>
       </div>
     </nav>
 
-    <!-- 4. 4-Column Catalog Grid (8 Pieces) -->
-    <main class="collection-grid">
+    <!-- Active Filter Notification Bar (แสดงเมื่อมีตัวกรอง) -->
+    <div class="active-filter-status" id="filterStatus" style="display:none;">
+      <span>FILTERED BY: <strong id="filterStatusText">NONE</strong></span>
+      <button type="button" id="resetFilterBtn">RESET ALL [x]</button>
+    </div>
+
+    <!-- 4. 4-Column Catalog Grid (8 Pieces with Data Tags) -->
+    <main class="collection-grid" id="collectionGrid">
 
       <!-- Item 01 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="vinyl" data-series="companion" data-edition="open" data-year="2016">
         <div class="card-thumb">
           <img src="images/toy-01.jpg" alt="KAWS Companion Brown" class="toy-image" loading="lazy">
         </div>
@@ -73,7 +127,7 @@
       </article>
 
       <!-- Item 02 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="vinyl" data-series="share" data-edition="limited" data-year="2020">
         <div class="card-thumb">
           <img src="images/toy-02.jpg" alt="KAWS Share Grey Pink" class="toy-image" loading="lazy">
         </div>
@@ -84,7 +138,7 @@
       </article>
 
       <!-- Item 03 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="vinyl" data-series="share" data-edition="limited" data-year="2020">
         <div class="card-thumb">
           <img src="images/toy-03.jpg" alt="KAWS Share Brown Blue" class="toy-image" loading="lazy">
         </div>
@@ -95,7 +149,7 @@
       </article>
 
       <!-- Item 04 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="vinyl" data-series="holiday" data-edition="limited" data-year="2019">
         <div class="card-thumb">
           <img src="images/toy-04.jpg" alt="KAWS Holiday Resting" class="toy-image" loading="lazy">
         </div>
@@ -106,7 +160,7 @@
       </article>
 
       <!-- Item 05 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="dissected" data-series="collab" data-edition="limited" data-year="2021">
         <div class="card-thumb">
           <img src="images/toy-05.jpg" alt="Be@rbrick KAWS Dissected" class="toy-image" loading="lazy">
         </div>
@@ -117,7 +171,7 @@
       </article>
 
       <!-- Item 06 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="vinyl" data-series="companion" data-edition="open" data-year="2018">
         <div class="card-thumb">
           <img src="images/toy-06.jpg" alt="KAWS Passing Through" class="toy-image" loading="lazy">
         </div>
@@ -128,7 +182,7 @@
       </article>
 
       <!-- Item 07 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="plush" data-series="companion" data-edition="limited" data-year="2019">
         <div class="card-thumb">
           <img src="images/toy-07.jpg" alt="KAWS BFF Pink" class="toy-image" loading="lazy">
         </div>
@@ -139,7 +193,7 @@
       </article>
 
       <!-- Item 08 -->
-      <article class="grid-card">
+      <article class="grid-card" data-category="vinyl" data-series="collab" data-edition="limited" data-year="2013">
         <div class="card-thumb">
           <img src="images/toy-08.jpg" alt="KAWS Astro Boy" class="toy-image" loading="lazy">
         </div>
@@ -150,6 +204,11 @@
       </article>
 
     </main>
+
+    <!-- Empty State ข้อความเมื่อค้นหาไม่เจอ -->
+    <div id="noResultsMsg" class="no-results-box" style="display:none;">
+      <span>NO TOY FOUND MATCHING YOUR CRITERIA</span>
+    </div>
 
     <!-- 5. Minimal Footer -->
     <footer class="site-footer">
@@ -188,7 +247,33 @@
 
   </div>
 
-  <!-- อ้างอิงไฟล์ js จากโฟลเดอร์ js/ ตามโครงสร้าง Deploy -->
+  <!-- Slide-out Drawer Menu (เปิดจากปุ่ม •••) -->
+  <aside class="quick-drawer" id="quickDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-title">ARCHIVE CONTROL // V.1</span>
+      <button type="button" class="drawer-close" id="drawerClose">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-stat">
+        <span class="stat-k">TOTAL TOYS</span>
+        <span class="stat-v" id="statCount">8 ITEMS</span>
+      </div>
+      <div class="drawer-stat">
+        <span class="stat-k">CURATION STATUS</span>
+        <span class="stat-v">ACTIVE ARCHIVE</span>
+      </div>
+      <div class="drawer-nav">
+        <span class="drawer-section-label">PAGE JUMP</span>
+        <a href="index.html">01 // CATALOG HOME</a>
+        <a href="story.html">02 // STORY CHRONICLES</a>
+        <a href="collection.html">03 // TECHNICAL SPEC</a>
+        <a href="about.html">04 // CURATOR PHILOSOPHY</a>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <!-- เรียกสคริปต์การทำงาน -->
   <script src="js/main.js"></script>
 </body>
 </html>

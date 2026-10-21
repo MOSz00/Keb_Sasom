@@ -32,12 +32,21 @@ a {
   text-decoration: none;
 }
 
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
 .site-wrapper {
   width: 100%;
   max-width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* ========================================================
@@ -51,7 +60,9 @@ a {
   border-bottom: 1px solid #eeeeee;
   width: 100%;
   min-height: 48px;
-  overflow: hidden;
+  position: relative;
+  z-index: 50;
+  background-color: #ffffff;
 }
 
 .header-left {
@@ -107,7 +118,14 @@ a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+}
+
+/* SEARCH WRAPPER */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .search-bar {
@@ -117,6 +135,42 @@ a {
   color: #888888;
   font-weight: 500;
   white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.search-bar:hover {
+  color: #111111;
+}
+
+.search-input {
+  display: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  padding: 4px 24px 4px 8px;
+  border: 1px solid #111111;
+  background-color: #fafafa;
+  color: #111111;
+  outline: none;
+  width: 180px;
+}
+
+.search-close-btn {
+  display: none;
+  position: absolute;
+  right: 6px;
+  font-size: 1rem;
+  line-height: 1;
+  color: #888888;
+}
+
+.search-wrapper.active .search-bar {
+  display: none;
+}
+
+.search-wrapper.active .search-input,
+.search-wrapper.active .search-close-btn {
+  display: block;
 }
 
 .header-menu {
@@ -124,12 +178,11 @@ a {
   font-size: 0.9rem;
   cursor: pointer;
   line-height: 1;
-  display: inline-flex;
-  align-items: center;
+  padding: 4px;
 }
 
 /* ========================================================
-   3. MOBILE DEFAULT (< 768px)
+   3. HOME PAGE (HERO & FILTER BAR)
    ======================================================== */
 .brand-hero {
   padding: 36px 12px 28px;
@@ -137,22 +190,18 @@ a {
   width: 100%;
 }
 
-/* หัวข้อเปลี่ยนฟอนต์เป็น Chillax + อนิเมชันเด้งขึ้นตอนเปิดเว็บ */
 .brand-title {
-  font-family: 'Chillax', sans-serif; /* เปลี่ยนฟอนต์เป็น Chillax */
+  font-family: 'Chillax', sans-serif;
   font-size: clamp(1.8rem, 5.5vw, 4.5rem);
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1.1;
   word-break: break-word;
-  
-  /* เพิ่ม Entrance Animation */
   animation: popBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   will-change: transform, opacity;
 }
 
-/* Keyframes สำหรับอนิเมชันเด้งขึ้น (Smooth Pop Bounce) */
 @keyframes popBounce {
   0% {
     opacity: 0;
@@ -174,32 +223,105 @@ a {
   border-top: 1px solid #111111;
   border-bottom: 1px solid #e5e5e5;
   width: 100%;
+  position: relative;
+  z-index: 40;
 }
 
 .filter-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 14px;
+  position: relative;
   border-right: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  min-height: 44px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.filter-item:hover {
-  background-color: #fcfcfc;
+  background-color: #ffffff;
 }
 
 .filter-item:nth-child(2n) {
   border-right: none;
 }
 
-/* HOME GRID: มือถือ 2 คอลัมน์ */
+.filter-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  min-height: 44px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-trigger:hover {
+  background-color: #fafafa;
+}
+
+.filter-item.open .chevron {
+  transform: rotate(180deg);
+}
+
+.chevron {
+  transition: transform 0.2s ease;
+}
+
+.filter-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  right: -1px;
+  background-color: #ffffff;
+  border: 1px solid #111111;
+  border-top: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  flex-direction: column;
+  z-index: 100;
+}
+
+.filter-item.open .filter-dropdown {
+  display: flex;
+}
+
+.dropdown-opt {
+  text-align: left;
+  padding: 10px 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.dropdown-opt:last-child {
+  border-bottom: none;
+}
+
+.dropdown-opt:hover {
+  background-color: #f7f7f7;
+  color: #000000;
+}
+
+.dropdown-opt.active {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.active-filter-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+}
+
+.active-filter-status button {
+  font-weight: 700;
+  color: #ff3333;
+}
+
+/* HOME COLLECTION GRID */
 .collection-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -225,6 +347,10 @@ a {
 
 .grid-card:nth-child(2n) {
   border-right: none;
+}
+
+.grid-card.hidden {
+  display: none !important;
 }
 
 .card-thumb {
@@ -258,14 +384,12 @@ a {
   padding-top: 12px;
   font-size: 0.58rem;
   letter-spacing: 0.04em;
-  transition: transform 0.3s ease;
 }
 
 .item-name {
   font-weight: 700;
   color: #555555;
   text-transform: uppercase;
-  transition: color 0.2s ease;
 }
 
 .grid-card:hover .item-name {
@@ -278,7 +402,19 @@ a {
   text-transform: uppercase;
 }
 
-/* STORY HERO & OVERVIEW */
+.no-results-box {
+  padding: 60px 20px;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: #888888;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* ========================================================
+   4. STORY PAGE (HERO, OVERVIEW, CHAPTER GRID)
+   ======================================================== */
 .story-hero,
 .collection-hero-banner,
 .about-hero-section {
@@ -364,7 +500,7 @@ a {
   letter-spacing: 0.1em;
 }
 
-/* STORY CHAPTER GRID */
+/* CHAPTER GRID */
 .chapter-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -488,7 +624,9 @@ a {
   letter-spacing: 0.1em;
 }
 
-/* COLLECTION DETAIL & ABOUT */
+/* ========================================================
+   5. COLLECTION PAGE & ABOUT PAGE
+   ======================================================== */
 .collection-detail-list {
   display: flex;
   flex-direction: column;
@@ -590,6 +728,7 @@ a {
   color: #111111;
 }
 
+/* ABOUT PAGE */
 .about-statement-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -685,7 +824,111 @@ a {
   margin: 0;
 }
 
-/* FOOTER */
+/* ========================================================
+   6. QUICK DRAWER (ปุ่ม 3 จุด)
+   ======================================================== */
+.quick-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 280px;
+  height: 100vh;
+  background-color: #ffffff;
+  border-left: 1px solid #111111;
+  z-index: 999;
+  padding: 24px 20px;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.quick-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 12px;
+}
+
+.drawer-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.drawer-close {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.drawer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.drawer-stat {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  border-bottom: 1px solid #f5f5f5;
+  padding-bottom: 8px;
+}
+
+.stat-k {
+  color: #888888;
+}
+
+.stat-v {
+  font-weight: 700;
+  color: #111111;
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.drawer-section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  color: #888888;
+  letter-spacing: 0.1em;
+}
+
+.drawer-nav a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.drawer-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+}
+
+.drawer-backdrop.active {
+  display: block;
+}
+
+/* ========================================================
+   7. FOOTER
+   ======================================================== */
 .site-footer {
   background-color: #000000;
   color: #ffffff;
@@ -743,7 +986,7 @@ a {
 }
 
 /* ========================================================
-   4. TABLET BREAKPOINT (≥ 768px) -> 3 คอลัมน์
+   8. TABLET BREAKPOINT (≥ 768px) -> 3 คอลัมน์
    ======================================================== */
 @media (min-width: 768px) {
   .top-header {
@@ -766,10 +1009,6 @@ a {
 
   .search-bar {
     display: inline-block;
-  }
-
-  .header-right {
-    gap: 20px;
   }
 
   .filter-bar {
@@ -863,7 +1102,7 @@ a {
 }
 
 /* ========================================================
-   5. DESKTOP BREAKPOINT (≥ 1024px) -> 4 คอลัมน์เต็มจอ
+   9. DESKTOP BREAKPOINT (≥ 1024px) -> 4 คอลัมน์เต็มจอ
    ======================================================== */
 @media (min-width: 1024px) {
   .top-header {
@@ -875,7 +1114,7 @@ a {
   }
 
   .header-right {
-    gap: 24px;
+    gap: 20px;
   }
 
   .brand-hero {
