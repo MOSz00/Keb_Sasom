@@ -1,5 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* --------------------------------------------------------
+     0. SMOOTH PAGE TRANSITION (FADE OUT ON LINK CLICK)
+     -------------------------------------------------------- */
+  const internalLinks = document.querySelectorAll(
+    'a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"]):not([target="_blank"])'
+  );
+
+  internalLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const destination = link.getAttribute("href");
+      
+      // ป้องกันการโหลดซ้ำหากคลิกหน้าเดิม
+      if (destination === window.location.pathname.split("/").pop() || destination === "") {
+        return;
+      }
+
+      e.preventDefault();
+      document.body.classList.add("page-fade-out");
+
+      setTimeout(() => {
+        window.location.href = destination;
+      }, 200); // ดีเลย์ 200ms รอให้เฟดออกเรียบเนียนแล้วจึงเปลี่ยนหน้า
+    });
+  });
+
+  // รองรับกรณีผู้ใช้กดย้อนกลับ (Back Button) ในเบราว์เซอร์
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      document.body.classList.remove("page-fade-out");
+    }
+  });
+
+  /* --------------------------------------------------------
      1. QUICK DRAWER (ปุ่ม 3 จุด •••) ทำงานได้ทุกหน้า
      -------------------------------------------------------- */
   const menuToggle = document.getElementById("menuToggle");
