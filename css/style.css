@@ -17,7 +17,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Page Transition: เริ่มต้นให้หน้าเว็บค่อยๆ เฟดเข้ามาอย่างนุ่มนวล */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #ffffff;
@@ -39,7 +38,6 @@ body {
   }
 }
 
-/* ตอนจะเปลี่ยนหน้า (Fade Out Exit) */
 body.page-fade-out {
   opacity: 0;
   transform: translateY(-4px);
@@ -87,7 +85,7 @@ button {
   min-height: 48px;
   position: relative;
   z-index: 50;
-  background-color: #ffffff;
+  background-color: #D1B089;
 }
 
 .header-left {
@@ -225,6 +223,26 @@ button {
   word-break: break-word;
   animation: popBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   will-change: transform, opacity;
+  color: #FF6200;
+}
+
+.brand-title .highlight-studio {
+  color: #000000;
+}
+
+.brand-title-img-wrap {
+  display: inline-block;
+  max-width: 100%;
+  animation: popBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  will-change: transform, opacity;
+}
+
+.brand-hero-img {
+  max-width: min(90vw, 480px); /* ขยายเต็มที่ 480px และไม่ล้นจอมือถือ */
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
 }
 
 @keyframes popBounce {
@@ -978,8 +996,8 @@ button {
    7. FOOTER
    ======================================================== */
 .site-footer {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #B58E63;
+  color: #000000;
   padding: 36px 16px 20px;
   width: 100%;
 }
@@ -1014,7 +1032,7 @@ button {
 
 .links-col a {
   text-decoration: none;
-  color: #777777;
+  color: #000000;
   font-size: 0.65rem;
 }
 
@@ -1024,7 +1042,7 @@ button {
   align-items: center;
   padding-top: 18px;
   font-size: 0.58rem;
-  color: #666666;
+  color: #000000;
 }
 
 .social-icons span {
