@@ -1,12 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Kanit:ital,wght@0,400;0,600;1,900&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,600;1,900&family=Space+Mono:wght@400;700&display=swap');
 
 /* ========================================================
-   0. FONT-FACE DEFINITIONS (SOV_Patigon)
+   0. FONT-FACE DEFINITIONS
    ======================================================== */
+/* ฟอนต์ภาษาอังกฤษหลัก: Chillax */
+@font-face {
+  font-family: 'Chillax';
+  src: url('../fonts/Chillax-Variable.woff2') format('woff2-variations'),
+       url('../fonts/Chillax-Variable.woff2') format('woff2'),
+       url('../fonts/Chillax-Variable.ttf') format('truetype');
+  font-weight: 200 700; /* รองรับแกน Variable ตั้งแต่ Extralight ถึง Bold */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ฟอนต์ภาษาไทยสำหรับข้อความแนวตั้ง: SOV_Patigon */
 @font-face {
   font-family: 'SOV_Patigon';
   src: url('../fonts/SOV_Patigon.woff2') format('woff2'),
-       url('../fonts/SOV_Patigon.woff') format('woff'),
+       url('../fonts/sov_patigon.woff2') format('woff2'),
        url('../fonts/SOV_Patigon.ttf') format('truetype'),
        url('../fonts/sov_patigon.ttf') format('truetype');
   font-weight: normal;
@@ -51,12 +63,32 @@ html, body {
 }
 
 body {
+  /* กำหนดให้ Chillax เป็นฟอนต์ตัวแรก ตามด้วย Kanit สำหรับภาษาไทย */
+  font-family: 'Chillax', 'Kanit', sans-serif;
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Inter', 'Kanit', sans-serif;
   line-height: 1.6;
-  opacity: 0;
-  animation: pageFadeIn 0.35s ease-out forwards;
+}
+
+/* จุดที่มีตัวหนังสือภาษาอังกฤษหลักๆ ให้เปลี่ยนมาใช้ Chillax */
+.header-logo,
+.nav-links-center a,
+.search-bar,
+.filter-trigger,
+.item-name,
+.detail-title,
+.story-headline,
+.footer-col h4,
+.btn-return-box {
+  font-family: 'Chillax', 'Kanit', sans-serif !important;
+  letter-spacing: 0.04em;
+}
+
+/* ข้อความแนวตั้งฝั่งซ้าย (100% Authentic) */
+.sv {
+  font-family: 'Chillax', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0.14em;
 }
 
 @keyframes pageFadeIn {
