@@ -1,34 +1,34 @@
-/* ประกาศเรียกใช้ไฟล์ฟอนต์ SOV_Patigon */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Kanit:ital,wght@0,400;0,600;1,900&family=Space+Mono:wght@400;700&display=swap');
+
+/* ========================================================
+   0. FONT-FACE DEFINITIONS (SOV_Patigon)
+   ======================================================== */
 @font-face {
   font-family: 'SOV_Patigon';
   src: url('../fonts/SOV_Patigon.woff2') format('woff2'),
-       url('../fonts/SOV_Patigon.ttf') format('truetype');
+       url('../fonts/SOV_Patigon.woff') format('woff'),
+       url('../fonts/SOV_Patigon.ttf') format('truetype'),
+       url('../fonts/sov_patigon.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-/* กำหนดสไตล์เฉพาะสำหรับคำว่า เก็บสะสม */
-.font-patigon {
-  font-family: 'SOV_Patigon', sans-serif !important;
-  font-size: 1.15em; /* ปรับขนาดชดเชยสัดส่วนตัวอักษรให้อ่านง่ายพอดีกับเนื้อหา */
-  letter-spacing: 0.02em;
-  color: #FFB27A;   /* โทนสีครีมส้มเข้ากับธีมกล่อง */
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Kanit:ital,wght@0,400;0,600;1,900&family=Space+Mono:wght@400;700&display=swap');
-
+/* ========================================================
+   1. RESET, COLOR VARIABLES & BASE RULES
+   ======================================================== */
 :root {
-  --k: #B68F63;
-  --d: #865F37;
-  --b: #5B3F22;
-  --t: #D1AE87;
-  --o: #FF6400;
-  --ob: #CC5200;
-  --p: #FFF3DE;
+  --k: #B68F63;      /* กล่องคราฟต์พื้นหลัง */
+  --d: #865F37;      /* น้ำตาลเข้มเส้นขอบกล่อง */
+  --b: #5B3F22;      /* น้ำตาลเข้มเงากล่อง */
+  --t: #D1AE87;      /* สีเนื้อกระดาษคราฟต์ */
+  --o: #FF6400;      /* สีส้ม Safety Orange เทปพัสดุ */
+  --ob: #CC5200;     /* ส้มเข้มสำหรับเงาปุ่ม 3D */
+  --p: #FFF3DE;      /* กระดาษพัสดุสีครีมอ่อน */
   --bg: #B68F63;
   --ink: #2A1B0C;
   --bar: #D1AE87;
+  --hero-gutter: clamp(40px, 5.5vw, 64px); /* ขนาดร่องขอบข้างกล่อง Hero */
   box-sizing: border-box;
 }
 
@@ -97,7 +97,7 @@ img {
 }
 
 /* ========================================================
-   TOP HEADER
+   2. TOP HEADER
    ======================================================== */
 header.top-header {
   position: sticky;
@@ -214,13 +214,16 @@ header.top-header {
 }
 
 /* ========================================================
-   HERO BANNER
+   3. HERO BOX & VERTICAL CENTERED TEXT (แก้สัดส่วนให้อยู่กลางร่อง)
    ======================================================== */
 .hero-box {
   position: relative;
   overflow: hidden;
   background: var(--k);
-  padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 54px);
+  padding-top: clamp(40px, 5vw, 64px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+  padding-left: var(--hero-gutter);
+  padding-right: var(--hero-gutter);
   border-bottom: 3px solid var(--d);
 }
 
@@ -235,30 +238,40 @@ header.top-header {
 .cr.c { bottom: 0; left: 0; background: linear-gradient(to top right, transparent 46%, var(--b) 46% 54%, transparent 54%); }
 .cr.d { bottom: 0; right: 0; background: linear-gradient(to top left, transparent 46%, var(--b) 46% 54%, transparent 54%); }
 
+/* ข้อความแนวตั้งฝั่งซ้าย (100% Authentic) อยู่กึ่งกลางร่องพอดี */
 .sv {
   position: absolute;
   top: 50%;
-  left: 8px;
-  transform: translateY(-50%);
-  writing-mode: vertical-rl;
+  left: calc(var(--hero-gutter) / 2);
+  right: auto;
+  width: max-content;
+  white-space: nowrap;
   font-family: 'Kanit', sans-serif;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--b);
-}
-
-/* ข้อความแนวตั้งขอบกล่องด้านขวา */
-.sv.r {
-  left: auto;
-  right: 8px;
-  font-family: 'SOV_Patigon', sans-serif !important;
-  font-size: 13px;
   letter-spacing: 0.12em;
   color: var(--b);
-  writing-mode: vertical-rl;
+  z-index: 20;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
 }
 
+/* ข้อความแนวตั้งฝั่งขวา (เก็บสะสม) อยู่กึ่งกลางร่องพอดี */
+.sv.r {
+  left: auto;
+  right: calc(var(--hero-gutter) / 2);
+  font-family: 'SOV_Patigon', 'Kanit', sans-serif !important;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  transform: translate(50%, -50%) rotate(90deg);
+  transform-origin: center center;
+}
+
+/* ========================================================
+   STICKER LABEL (ANIMATED SLAP EFFECT)
+   ======================================================== */
 .lb {
   position: absolute;
   top: 14px;
@@ -270,14 +283,57 @@ header.top-header {
   font-family: 'Space Mono', monospace;
   font-size: 8px;
   line-height: 1.3;
-  z-index: 3;
-  transform: rotate(-3deg);
-  box-shadow: 2px 2px 0 var(--b);
+  z-index: 10;
+  
+  /* ค่าเริ่มต้นก่อนแอนิเมชันทำงาน (ซ่อนไว้ชั่วขณะ) */
+  opacity: 0;
+  transform-origin: center center;
+  
+  /* เรียกใช้แอนิเมชันแปะสติกเกอร์: หน่วงเวลา 0.4s เพื่อให้กล่องหลักเปิดขึ้นมาก่อน */
+  animation: stickerSlap 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
 }
-.lb em { display: block; font-style: normal; text-align: right; }
-.lb s { display: block; height: 8px; margin-top: 3px; background: repeating-linear-gradient(90deg, #161616 0 1px, transparent 1px 3px, #161616 3px 5px, transparent 5px 6px); }
 
-/* Grid กล่องพื้นหลังเดิม: แบ่งซ้าย-ขวา */
+.lb em { 
+  display: block; 
+  font-style: normal; 
+  text-align: right; 
+}
+
+.lb s { 
+  display: block; 
+  height: 8px; 
+  margin-top: 3px; 
+  background: repeating-linear-gradient(90deg, #161616 0 1px, transparent 1px 3px, #161616 3px 5px, transparent 5px 6px); 
+}
+
+/* คีย์เฟรมแอนิเมชันจังหวะแปะสติกเกอร์กระแทกกล่อง */
+@keyframes stickerSlap {
+  0% {
+    opacity: 0;
+    /* ลอยสูงขึ้น พองตัวใหญ่ และเอียงมากกว่าเดิม */
+    transform: translate3d(0, -35px, 0) scale(1.6) rotate(-14deg);
+    box-shadow: 0 25px 35px rgba(42, 27, 12, 0.4);
+  }
+  65% {
+    opacity: 1;
+    /* จังหวะกระแทกโดนพื้นผิวกล่อง (บี้ลงเล็กน้อย) */
+    transform: translate3d(0, 1px, 0) scale(0.96) rotate(-2deg);
+    box-shadow: 1px 1px 0 var(--b);
+  }
+  85% {
+    /* จังหวะเด้งคืนตัวเล็กน้อย */
+    transform: translate3d(0, -2px, 0) scale(1.02) rotate(-3.5deg);
+    box-shadow: 3px 3px 0 var(--b);
+  }
+  100% {
+    opacity: 1;
+    /* แปะแนบสนิทตามตำแหน่งและองศาเดิม */
+    transform: translate3d(0, 0, 0) scale(1) rotate(-3deg);
+    box-shadow: 2px 2px 0 var(--b);
+  }
+}
+
+/* Grid กล่องพื้นหลังเดิม: ซ้ายโลโก้ ขวาข้อความ */
 .hp-inner {
   position: relative;
   background: var(--d);
@@ -369,6 +425,12 @@ header.top-header {
   font-weight: 600;
 }
 
+.font-patigon {
+  font-family: 'SOV_Patigon', 'Kanit', sans-serif !important;
+  font-size: 1.1em;
+  letter-spacing: 0.02em;
+}
+
 .manifesto-footer {
   display: flex;
   align-items: center;
@@ -385,6 +447,40 @@ header.top-header {
 .mf-label { color: var(--o); font-weight: 700; }
 .mf-val { color: #CBB08B; font-weight: 400; }
 .mf-sep { display: inline-block; width: 8px; }
+
+/* PACKAGING SYMBOLS BAR */
+.packaging-symbols-bar {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.8vw, 20px);
+  margin-top: 14px;
+  padding-left: clamp(8px, 1.5vw, 16px);
+  color: #382818;
+  opacity: 0.8;
+}
+
+.packaging-symbols-bar svg {
+  width: clamp(20px, 2.5vw, 28px);
+  height: clamp(20px, 2.5vw, 28px);
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.packaging-symbols-bar svg:hover {
+  transform: translateY(-2px);
+  color: var(--o);
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .packaging-symbols-bar {
+    justify-content: center;
+    padding-left: 0;
+    margin-top: 18px;
+    gap: 12px;
+  }
+}
 
 /* MARQUEE TAPE TICKER */
 .tk {
@@ -414,43 +510,7 @@ header.top-header {
 }
 
 /* ========================================================
-   PACKAGING SYMBOLS
-   ======================================================== */
-.packaging-symbols-bar {
-  display: flex;
-  align-items: center;
-  gap: clamp(10px, 1.8vw, 20px);
-  margin-top: 14px;
-  padding-left: clamp(8px, 1.5vw, 16px);
-  color: #382818; /* สีน้ำตาลเข้มหมึกพิมพ์ลังกระดาษ */
-  opacity: 0.8;
-}
-
-.packaging-symbols-bar svg {
-  width: clamp(20px, 2.5vw, 28px);
-  height: clamp(20px, 2.5vw, 28px);
-  fill: currentColor;
-  flex-shrink: 0;
-  transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-}
-
-.packaging-symbols-bar svg:hover {
-  transform: translateY(-2px);
-  color: var(--o); /* เปลี่ยนเป็นสีส้มเทปกาวเมื่อชี้ */
-  opacity: 1;
-}
-
-@media (max-width: 600px) {
-  .packaging-symbols-bar {
-    justify-content: center;
-    padding-left: 0;
-    margin-top: 18px;
-    gap: 12px;
-  }
-}
-
-/* ========================================================
-   FILTER BAR
+   4. FILTER BAR
    ======================================================== */
 .filter-bar {
   display: grid;
@@ -548,7 +608,7 @@ header.top-header {
 }
 
 /* ========================================================
-   COLLECTION GRID
+   5. CATALOG GRID
    ======================================================== */
 .collection-grid {
   display: grid;
@@ -672,7 +732,7 @@ header.top-header {
 }
 
 /* ========================================================
-   STORY / COLLECTION / ABOUT COMMON STYLES
+   6. STORY, COLLECTION & ABOUT COMMON STYLES
    ======================================================== */
 .story-hero,
 .collection-hero-banner,
@@ -766,7 +826,7 @@ header.top-header {
   letter-spacing: 0.08em;
 }
 
-/* CHAPTER GRID */
+/* CHAPTER GRID (STORY PAGE) */
 .chapter-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1066,12 +1126,12 @@ header.top-header {
 }
 
 /* ========================================================
-   QUICK DRAWER
+   7. QUICK DRAWER (CONTROL PANEL)
    ======================================================== */
 .quick-drawer {
   position: fixed;
   top: 0;
-  right: 0; /* ตรึงตำแหน่งไว้ที่ขวา */
+  right: 0;
   width: 290px;
   height: 100vh;
   background: var(--p);
@@ -1083,8 +1143,6 @@ header.top-header {
   flex-direction: column;
   gap: 22px;
   color: var(--ink);
-
-  /* ซ่อนด้วย transform และ visibility เพื่อไม่ให้ดันหน้าจอเบี้ยว */
   transform: translateX(100%);
   visibility: hidden;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
@@ -1160,7 +1218,7 @@ header.top-header {
 .drawer-backdrop.active { display: block; }
 
 /* ========================================================
-   FOOTER (3-COLUMN BALANCED INDUSTRIAL LAYOUT)
+   8. FOOTER (3-COLUMN BALANCED LAYOUT)
    ======================================================== */
 .site-footer {
   background: var(--k);
@@ -1170,7 +1228,6 @@ header.top-header {
   border-top: 6px solid var(--b);
 }
 
-/* ส่วนบน: จัด 3 คอลัมน์กระจายทั่วจอ */
 .footer-top {
   display: grid;
   grid-template-columns: 1fr;
@@ -1181,7 +1238,7 @@ header.top-header {
 
 @media (min-width: 768px) {
   .footer-top {
-    grid-template-columns: 1.5fr 1fr 1fr; /* ซ้ายกว้างกว่าเล็กน้อย กลางกับขวาสมดุล */
+    grid-template-columns: 1.5fr 1fr 1fr;
     gap: 40px;
     align-items: start;
   }
@@ -1215,7 +1272,6 @@ header.top-header {
   line-height: 1.5;
 }
 
-/* ช่องกรอกอีเมลรับอัปเดต */
 .footer-input-group {
   display: flex;
   max-width: 340px;
@@ -1253,7 +1309,6 @@ header.top-header {
   color: #fff;
 }
 
-/* ลิสต์ลิงก์เมนู (เอา Bullet ออก และจัดระยะสวยงาม) */
 .footer-links {
   list-style: none !important;
   margin: 0;
@@ -1283,9 +1338,6 @@ header.top-header {
   transform: translateX(3px);
 }
 
-/* ========================================================
-   FOOTER BOTTOM (SOCIALS LEFT & COPYRIGHT RIGHT)
-   ======================================================== */
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -1361,19 +1413,8 @@ header.top-header {
   letter-spacing: 0.06em;
 }
 
-@media (max-width: 768px) {
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  .footer-bottom .credit {
-    text-align: left;
-  }
-}
-
 /* ========================================================
-   RESPONSIVE BREAKPOINTS
+   9. RESPONSIVE BREAKPOINTS (คำนวณตำแหน่งกึ่งกลางร่องขอบกล่อง)
    ======================================================== */
 @media (min-width: 768px) {
   header.top-header { padding: 12px 32px; }
@@ -1416,9 +1457,6 @@ header.top-header {
     padding: 48px 32px;
     gap: 40px;
   }
-
-  .site-footer { padding: 40px 32px 24px; }
-  .footer-top { flex-direction: row; justify-content: space-between; }
 }
 
 @media (min-width: 1024px) {
@@ -1442,5 +1480,40 @@ header.top-header {
   .detail-content { padding: 50px 44px; }
 
   .about-statement-grid { padding: 60px 44px; gap: 50px; }
-  .site-footer { padding: 50px 44px 30px; }
+}
+
+/* ปรับแต่งความกว้างร่องขอบสำหรับแท็บเล็ตและจอมือถือ */
+@media (max-width: 768px) {
+  :root {
+    --hero-gutter: 38px;
+  }
+  .sv {
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+  }
+  .sv.r {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .footer-bottom .credit {
+    text-align: left;
+  }
+}
+
+/* ปรับแต่งความกว้างร่องขอบสำหรับมือถือจอแคบ */
+@media (max-width: 480px) {
+  :root {
+    --hero-gutter: 34px;
+  }
+  .sv {
+    font-size: 8.5px;
+  }
+  .sv.r {
+    font-size: 11px;
+  }
 }
