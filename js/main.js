@@ -1,43 +1,73 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* --------------------------------------------------------
-     0. SMOOTH PAGE TRANSITION (FADE OUT ON LINK CLICK)
+     0. FIX BFCACHE & DRAWER LEAK
      -------------------------------------------------------- */
+  const quickDrawer = document.getElementById("quickDrawer");
+  const drawerBackdrop = document.getElementById("drawerBackdrop");
+
+  function forceCloseDrawer() {
+    if (quickDrawer) {
+      quickDrawer.classList.remove("open");
+      quickDrawer.setAttribute("aria-hidden", "true");
+    }
+    if (drawerBackdrop) {
+      drawerBackdrop.classList.remove("active");
+    }
+  }
+
+  forceCloseDrawer();
+
+  window.addEventListener("pageshow", (event) => {
+    forceCloseDrawer();
+    document.body.classList.remove("page-fade-out");
+  });
+
+  /* --------------------------------------------------------
+     1. MARQUEE TICKER TAPE
+     -------------------------------------------------------- */
+  const tickerEl = document.getElementById("tk");
+  if (tickerEl) {
+    const s = "BRAND NEW ✦ 100% AUTHENTIC ✦ HANDLE WITH CARE ✦ KEEP DRY ✦ THIS WAY UP ✦ KEB_SASOM STUDIO ✦ BKK.TH ✦ ";
+    tickerEl.textContent = s.repeat(8);
+  }
+
+  /* --------------------------------------------------------
+     2. SMOOTH PAGE TRANSITION & ANCHOR SCROLL FIX
+     -------------------------------------------------------- */
+  // คัดกรองไม่ให้ดักจับลิงก์ที่มีแฮชแท็กข้ามหน้า เช่น collection.html#toy-01
   const internalLinks = document.querySelectorAll(
-    'a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"]):not([target="_blank"])'
+    'a[href]:not([href^="#"]):not([href*="#"]):not([href^="mailto:"]):not([href^="tel:"]):not([target="_blank"])'
   );
 
   internalLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       const destination = link.getAttribute("href");
-      
-      // ป้องกันการโหลดซ้ำหากคลิกหน้าเดิม
       if (destination === window.location.pathname.split("/").pop() || destination === "") {
         return;
       }
-
       e.preventDefault();
       document.body.classList.add("page-fade-out");
-
       setTimeout(() => {
         window.location.href = destination;
-      }, 200); // ดีเลย์ 200ms รอให้เฟดออกเรียบเนียนแล้วจึงเปลี่ยนหน้า
+      }, 200);
     });
   });
 
-  // รองรับกรณีผู้ใช้กดย้อนกลับ (Back Button) ในเบราว์เซอร์
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
-      document.body.classList.remove("page-fade-out");
+  // จัดการกรณีเปิดเข้ามาด้วย URL ที่มี Hash (#toy-xx) ให้ Scroll เลื่อนลงอย่างนุ่มนวล
+  if (window.location.hash) {
+    const targetEl = document.querySelector(window.location.hash);
+    if (targetEl) {
+      setTimeout(() => {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 250);
     }
-  });
+  }
 
   /* --------------------------------------------------------
-     1. QUICK DRAWER (ปุ่ม 3 จุด •••) ทำงานได้ทุกหน้า
+     3. QUICK DRAWER (ปุ่ม 3 จุด •••)
      -------------------------------------------------------- */
   const menuToggle = document.getElementById("menuToggle");
-  const quickDrawer = document.getElementById("quickDrawer");
   const drawerClose = document.getElementById("drawerClose");
-  const drawerBackdrop = document.getElementById("drawerBackdrop");
 
   function openDrawer() {
     if (quickDrawer && drawerBackdrop) {
@@ -48,11 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeDrawer() {
-    if (quickDrawer && drawerBackdrop) {
-      quickDrawer.classList.remove("open");
-      drawerBackdrop.classList.remove("active");
-      quickDrawer.setAttribute("aria-hidden", "true");
-    }
+    forceCloseDrawer();
   }
 
   if (menuToggle) menuToggle.addEventListener("click", openDrawer);
@@ -60,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (drawerBackdrop) drawerBackdrop.addEventListener("click", closeDrawer);
 
   /* --------------------------------------------------------
-     2. SEARCH SYSTEM (รองรับทั้งหน้า Home และหน้าอื่น)
+     4. SEARCH SYSTEM
      -------------------------------------------------------- */
   const searchWrapper = document.getElementById("searchWrapper");
   const searchTrigger = document.getElementById("searchTrigger");
@@ -79,30 +105,24 @@ document.addEventListener("DOMContentLoaded", () => {
     searchClose.addEventListener("click", () => {
       searchInput.value = "";
       searchWrapper.classList.remove("active");
-      if (typeof applyCombinedFilters === "function") {
-        applyCombinedFilters();
-      }
+      if (typeof applyCombinedFilters === "function") applyCombinedFilters();
     });
 
     searchInput.addEventListener("input", () => {
-      if (typeof applyCombinedFilters === "function") {
-        applyCombinedFilters();
-      }
+      if (typeof applyCombinedFilters === "function") applyCombinedFilters();
     });
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && searchWrapper.classList.contains("active")) {
         searchInput.value = "";
         searchWrapper.classList.remove("active");
-        if (typeof applyCombinedFilters === "function") {
-          applyCombinedFilters();
-        }
+        if (typeof applyCombinedFilters === "function") applyCombinedFilters();
       }
     });
   }
 
   /* --------------------------------------------------------
-     3. FILTER BAR (เฉพาะหน้า index.html ที่มี Filter Bar)
+     5. FILTER BAR
      -------------------------------------------------------- */
   const filterItems = document.querySelectorAll(".filter-item");
   const filterStatus = document.getElementById("filterStatus");
@@ -126,9 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
           e.stopPropagation();
           const isOpen = item.classList.contains("open");
           filterItems.forEach((el) => el.classList.remove("open"));
-          if (!isOpen) {
-            item.classList.add("open");
-          }
+          if (!isOpen) item.classList.add("open");
         });
       }
 

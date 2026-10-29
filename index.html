@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=chillax@600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Kanit:ital,wght@0,400;0,600;1,900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon.jpg">
 </head>
 <body>
@@ -29,27 +28,64 @@
       </nav>
 
       <div class="header-right">
-        <!-- Search Trigger / Interactive Input -->
         <div class="search-wrapper" id="searchWrapper">
           <span class="search-bar" id="searchTrigger">TYPE TO SEARCH</span>
-          <input type="text" id="searchInput" class="search-input" placeholder="SEARCH TITLE / SPEC..." autocomplete="off">
+          <input type="text" id="searchInput" class="search-input" placeholder="SEARCH ARCHIVE..." autocomplete="off">
           <button type="button" id="searchClose" class="search-close-btn" aria-label="Close search">&times;</button>
         </div>
-        <!-- 3-Dots Button -->
         <button type="button" class="header-menu" id="menuToggle" aria-label="Open menu">•••</button>
       </div>
     </header>
 
-  <!-- 2. Brand Hero Section (ใช้รูป PNG แทนข้อความ) -->
-<section class="brand-hero">
-  <h1 class="brand-title-img-wrap">
-    <img src="images/brand-title.png" alt="Keb_Sasom Studio" class="brand-hero-img">
-  </h1>
-</section>
+    <!-- 2. Hero Box -->
+    <section class="hero-box">
+      <i class="cr a"></i><i class="cr b"></i><i class="cr c"></i><i class="cr d"></i>
+      <span class="sv">100% Authentic</span><span class="sv r">เก็บสะสม</span>
+      <div class="lb"><span>♻ △ ✿</span><em>16 ARCHIVES</em><em>SPU SDM 2026</em><s></s></div>
+      
+      <div class="hp-inner">
+        <div class="brand-title-img-wrap">
+          <img src="images/brand-title.png" alt="Keb_Sasom Studio" class="brand-hero-img">
+        </div>
 
-    <!-- 3. Filter Bar พร้อม Dropdown Items -->
+        <div class="manifesto-card">
+          <div class="manifesto-badge">PROJECT MANIFESTO // GAD23867</div>
+          <h2 class="manifesto-title">
+            คลังบันทึกงานประติมากรรม<br>และของสะสมดิจิทัล
+          </h2>
+          <p class="manifesto-desc">
+            <strong>Keb_Sasom Studio</strong> (<span class="font-patigon">เก็บสะสม</span>) คือพื้นที่อาร์ไคฟ์ออนไลน์ที่รวบรวมชิ้นงาน Art Toy ระดับไอคอนิกทั้ง 16 ชิ้น จัดทำขึ้นเพื่อศึกษาและถ่ายทอดคุณค่าทางสุนทรียศาสตร์ โครงสร้างสรีระ (Form &amp; Anatomy) ตลอดจนการทดลองวัสดุในงานออกแบบร่วมสมัย
+          </p>
+          <div class="manifesto-footer">
+            <span class="mf-label">PURPOSE :</span> <span class="mf-val">CODING FOR GRAPHIC DESIGN</span>
+            <span class="mf-sep"></span>
+            <span class="mf-label">CURATED :</span> <span class="mf-val">16 ARCHIVES</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- สัญลักษณ์ Packaging Symbols 6 ตัว ตรงวงแดงด้านล่างซ้าย -->
+      <div class="packaging-symbols-bar" aria-hidden="true">
+        <!-- 1. Recycle -->
+        <svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 8 8h-3a5 5 0 1 1-5-5v3l5-4-5-4z"/></svg>
+        <!-- 2. This Way Up -->
+        <svg viewBox="0 0 24 24"><path d="M12 2 5 9h4v5h6V9h4zM5 17h14v3H5z"/></svg>
+        <!-- 3. CE -->
+        <svg viewBox="0 0 24 24"><text x="12" y="17" font-size="13" font-weight="700" text-anchor="middle" font-family="'Space Mono', Kanit, sans-serif">CE</text></svg>
+        <!-- 4. Fragile -->
+        <svg viewBox="0 0 24 24"><path d="M6 2h12l-1 7a5 5 0 0 1-4 4.9V20h4v2H7v-2h4v-6.1A5 5 0 0 1 7 9z"/></svg>
+        <!-- 5. Keep Dry -->
+        <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9zM11 12h2v6.5a2.5 2.5 0 0 1-5 0h2z"/></svg>
+        <!-- 6. Handle With Care -->
+        <svg viewBox="0 0 24 24"><path d="M12 2 3 6.5v11L12 22l9-4.5v-11zM12 4.3l5.8 2.9L12 10 6.2 7.2zM5 8.8l6 3v7.4l-6-3zm14 0v7.4l-6 3v-7.4z"/></svg>
+      </div>
+    </section>
+
+    <!-- 3. Marquee Tape Ticker -->
+    <div class="tk" aria-hidden="true"><div id="tk"></div></div>
+
+    <!-- 4. Filter Bar -->
     <nav class="filter-bar" id="filterBar">
-      <!-- Category -->
       <div class="filter-item" data-filter-type="category">
         <div class="filter-trigger">
           <span class="filter-label">CATEGORY</span>
@@ -58,12 +94,11 @@
         <div class="filter-dropdown">
           <button type="button" class="dropdown-opt active" data-filter="all">ALL CATEGORIES</button>
           <button type="button" class="dropdown-opt" data-filter="vinyl">VINYL FIGURE</button>
+          <button type="button" class="dropdown-opt" data-filter="dissected">DISSECTED / ANATOMY</button>
           <button type="button" class="dropdown-opt" data-filter="plush">PLUSH / FLOCKED</button>
-          <button type="button" class="dropdown-opt" data-filter="dissected">DISSECTED / ABS</button>
         </div>
       </div>
 
-      <!-- Series -->
       <div class="filter-item" data-filter-type="series">
         <div class="filter-trigger">
           <span class="filter-label">SERIES</span>
@@ -72,13 +107,12 @@
         <div class="filter-dropdown">
           <button type="button" class="dropdown-opt active" data-filter="all">ALL SERIES</button>
           <button type="button" class="dropdown-opt" data-filter="companion">COMPANION</button>
-          <button type="button" class="dropdown-opt" data-filter="share">SHARE</button>
+          <button type="button" class="dropdown-opt" data-filter="share">SHARE &amp; TAKE</button>
           <button type="button" class="dropdown-opt" data-filter="holiday">HOLIDAY</button>
-          <button type="button" class="dropdown-opt" data-filter="collab">COLLAB (BE@RBRICK / ASTRO)</button>
+          <button type="button" class="dropdown-opt" data-filter="collab">STAR WARS / ASTRO</button>
         </div>
       </div>
 
-      <!-- Edition -->
       <div class="filter-item" data-filter-type="edition">
         <div class="filter-trigger">
           <span class="filter-label">EDITION</span>
@@ -91,7 +125,6 @@
         </div>
       </div>
 
-      <!-- Year -->
       <div class="filter-item" data-filter-type="year">
         <div class="filter-trigger">
           <span class="filter-label">YEAR</span>
@@ -99,12 +132,13 @@
         </div>
         <div class="filter-dropdown">
           <button type="button" class="dropdown-opt active" data-filter="all">ALL YEARS</button>
-          <button type="button" class="dropdown-opt" data-filter="2013">2013</button>
+          <button type="button" class="dropdown-opt" data-filter="2007">2007</button>
+          <button type="button" class="dropdown-opt" data-filter="2008">2008</button>
+          <button type="button" class="dropdown-opt" data-filter="2012">2012</button>
           <button type="button" class="dropdown-opt" data-filter="2016">2016</button>
           <button type="button" class="dropdown-opt" data-filter="2018">2018</button>
           <button type="button" class="dropdown-opt" data-filter="2019">2019</button>
           <button type="button" class="dropdown-opt" data-filter="2020">2020</button>
-          <button type="button" class="dropdown-opt" data-filter="2021">2021</button>
         </div>
       </div>
     </nav>
@@ -115,26 +149,26 @@
       <button type="button" id="resetFilterBtn">RESET ALL [x]</button>
     </div>
 
-    <!-- 4. 4-Column Catalog Grid (คลิกรูปแล้วข้ามไปหน้ารายละเอียด) -->
+    <!-- 5. 16 Items Catalog Grid (Updated to real models) -->
     <main class="collection-grid" id="collectionGrid">
 
       <!-- Item 01 -->
       <article class="grid-card" data-category="vinyl" data-series="companion" data-edition="open" data-year="2016">
         <div class="card-thumb">
-          <a href="collection.html#toy-01" title="View KAWS COMPANION BROWN Details">
+          <a href="collection.html#toy-01" title="View details">
             <img src="images/toy-01.jpg" alt="KAWS Companion Brown" class="toy-image" loading="lazy">
           </a>
         </div>
         <div class="card-details">
           <span class="item-name">KAWS COMPANION BROWN</span>
-          <span class="item-spec">OPEN EDITION</span>
+          <span class="item-spec">OPEN EDITION 2016</span>
         </div>
       </article>
 
       <!-- Item 02 -->
       <article class="grid-card" data-category="vinyl" data-series="share" data-edition="limited" data-year="2020">
         <div class="card-thumb">
-          <a href="collection.html#toy-02" title="View KAWS SHARE GREY Details">
+          <a href="collection.html#toy-02" title="View details">
             <img src="images/toy-02.jpg" alt="KAWS Share Grey Pink" class="toy-image" loading="lazy">
           </a>
         </div>
@@ -147,7 +181,7 @@
       <!-- Item 03 -->
       <article class="grid-card" data-category="vinyl" data-series="share" data-edition="limited" data-year="2020">
         <div class="card-thumb">
-          <a href="collection.html#toy-03" title="View KAWS SHARE BROWN Details">
+          <a href="collection.html#toy-03" title="View details">
             <img src="images/toy-03.jpg" alt="KAWS Share Brown Blue" class="toy-image" loading="lazy">
           </a>
         </div>
@@ -160,113 +194,249 @@
       <!-- Item 04 -->
       <article class="grid-card" data-category="vinyl" data-series="holiday" data-edition="limited" data-year="2019">
         <div class="card-thumb">
-          <a href="collection.html#toy-04" title="View KAWS HOLIDAY SEATED Details">
-            <img src="images/toy-04.jpg" alt="KAWS Holiday Resting" class="toy-image" loading="lazy">
+          <a href="collection.html#toy-04" title="View details">
+            <img src="images/toy-04.jpg" alt="KAWS Holiday Resting Brown" class="toy-image" loading="lazy">
           </a>
         </div>
         <div class="card-details">
-          <span class="item-name">KAWS HOLIDAY SEATED</span>
-          <span class="item-spec">RESTING SERIES</span>
+          <span class="item-name">KAWS HOLIDAY RESTING</span>
+          <span class="item-spec">BROWN SEATED EDITION</span>
         </div>
       </article>
 
       <!-- Item 05 -->
-      <article class="grid-card" data-category="dissected" data-series="collab" data-edition="limited" data-year="2021">
+      <article class="grid-card" data-category="vinyl" data-series="companion" data-edition="open" data-year="2016">
         <div class="card-thumb">
-          <a href="collection.html#toy-05" title="View BE@RBRICK DISSECTED Details">
-            <img src="images/toy-05.jpg" alt="Be@rbrick KAWS Dissected" class="toy-image" loading="lazy">
+          <a href="collection.html#toy-05" title="View details">
+            <img src="images/toy-05.jpg" alt="KAWS Companion Black" class="toy-image" loading="lazy">
           </a>
         </div>
         <div class="card-details">
-          <span class="item-name">BE@RBRICK DISSECTED</span>
-          <span class="item-spec">HALF CLEAR SHELL</span>
+          <span class="item-name">KAWS COMPANION BLACK</span>
+          <span class="item-spec">YELLOW EYES EDITION</span>
         </div>
       </article>
 
       <!-- Item 06 -->
       <article class="grid-card" data-category="vinyl" data-series="companion" data-edition="open" data-year="2018">
         <div class="card-thumb">
-          <a href="collection.html#toy-06" title="View PASSING THROUGH GREY Details">
-            <img src="images/toy-06.jpg" alt="KAWS Passing Through" class="toy-image" loading="lazy">
+          <a href="collection.html#toy-06" title="View details">
+            <img src="images/toy-06.jpg" alt="KAWS Passing Through Grey" class="toy-image" loading="lazy">
           </a>
         </div>
         <div class="card-details">
           <span class="item-name">PASSING THROUGH GREY</span>
-          <span class="item-spec">SEATED BUST</span>
+          <span class="item-spec">SEATED BUST EDITION</span>
         </div>
       </article>
 
       <!-- Item 07 -->
       <article class="grid-card" data-category="plush" data-series="companion" data-edition="limited" data-year="2019">
         <div class="card-thumb">
-          <a href="collection.html#toy-07" title="View KAWS BFF VINYL Details">
-            <img src="images/toy-07.jpg" alt="KAWS BFF Pink" class="toy-image" loading="lazy">
+          <a href="collection.html#toy-07" title="View details">
+            <img src="images/toy-07.jpg" alt="KAWS BFF Vinyl Pink" class="toy-image" loading="lazy">
           </a>
         </div>
         <div class="card-details">
-          <span class="item-name">KAWS BFF VINYL</span>
-          <span class="item-spec">PINK MONOCHROME</span>
+          <span class="item-name">KAWS BFF VINYL PINK</span>
+          <span class="item-spec">MONOCHROME EDITION</span>
         </div>
       </article>
 
       <!-- Item 08 -->
-      <article class="grid-card" data-category="vinyl" data-series="collab" data-edition="limited" data-year="2013">
+      <article class="grid-card" data-category="vinyl" data-series="collab" data-edition="limited" data-year="2012">
         <div class="card-thumb">
-          <a href="collection.html#toy-08" title="View KAWS × ASTRO BOY Details">
+          <a href="collection.html#toy-08" title="View details">
             <img src="images/toy-08.jpg" alt="KAWS Astro Boy" class="toy-image" loading="lazy">
           </a>
         </div>
         <div class="card-details">
           <span class="item-name">KAWS × ASTRO BOY</span>
-          <span class="item-spec">SPECIAL ARCHIVE</span>
+          <span class="item-spec">ORIGINALFAKE TOKYO</span>
+        </div>
+      </article>
+
+      <!-- Item 09 -->
+      <article class="grid-card" data-category="vinyl" data-series="share" data-edition="limited" data-year="2020">
+        <div class="card-thumb">
+          <a href="collection.html#toy-09" title="View details">
+            <img src="images/toy-09.jpg" alt="KAWS Take Blue" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">KAWS TAKE BLUE</span>
+          <span class="item-spec">BFF WITH COMPANION</span>
+        </div>
+      </article>
+
+      <!-- Item 10 -->
+      <article class="grid-card" data-category="dissected" data-series="holiday" data-edition="limited" data-year="2012">
+        <div class="card-thumb">
+          <a href="collection.html#toy-10" title="View details">
+            <img src="images/toy-10.jpg" alt="KAWS Resting Place Black" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">RESTING PLACE BLACK</span>
+          <span class="item-spec">DISSECTED GREEN SKULL</span>
+        </div>
+      </article>
+
+      <!-- Item 11 -->
+      <article class="grid-card" data-category="dissected" data-series="companion" data-edition="open" data-year="2016">
+        <div class="card-thumb">
+          <a href="collection.html#toy-11" title="View details">
+            <img src="images/toy-11.jpg" alt="KAWS Flayed Companion Black" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">FLAYED COMPANION BLACK</span>
+          <span class="item-spec">ANATOMY GREEN EDITION</span>
+        </div>
+      </article>
+
+      <!-- Item 12 -->
+      <article class="grid-card" data-category="vinyl" data-series="collab" data-edition="limited" data-year="2008">
+        <div class="card-thumb">
+          <a href="collection.html#toy-12" title="View details">
+            <img src="images/toy-12.jpg" alt="KAWS Star Wars Boba Fett" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">KAWS × BOBA FETT</span>
+          <span class="item-spec">STAR WARS ARCHIVE</span>
+        </div>
+      </article>
+
+      <!-- Item 13 -->
+      <article class="grid-card" data-category="vinyl" data-series="collab" data-edition="limited" data-year="2007">
+        <div class="card-thumb">
+          <a href="collection.html#toy-13" title="View details">
+            <img src="images/toy-13.jpg" alt="KAWS Star Wars Darth Vader" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">KAWS × DARTH VADER</span>
+          <span class="item-spec">WITH FABRIC CAPE</span>
+        </div>
+      </article>
+
+      <!-- Item 14 -->
+      <article class="grid-card" data-category="vinyl" data-series="collab" data-edition="limited" data-year="2008">
+        <div class="card-thumb">
+          <a href="collection.html#toy-14" title="View details">
+            <img src="images/toy-14.jpg" alt="KAWS Star Wars Stormtrooper" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">KAWS × STORMTROOPER</span>
+          <span class="item-spec">ORIGINALFAKE 2008</span>
+        </div>
+      </article>
+
+      <!-- Item 15 -->
+      <article class="grid-card" data-category="dissected" data-series="companion" data-edition="open" data-year="2016">
+        <div class="card-thumb">
+          <a href="collection.html#toy-15" title="View details">
+            <img src="images/toy-15.jpg" alt="KAWS Flayed Companion Grey" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">FLAYED COMPANION GREY</span>
+          <span class="item-spec">MONOCHROME ANATOMY</span>
+        </div>
+      </article>
+
+      <!-- Item 16 -->
+      <article class="grid-card" data-category="dissected" data-series="companion" data-edition="open" data-year="2016">
+        <div class="card-thumb">
+          <a href="collection.html#toy-16" title="View details">
+            <img src="images/toy-16.jpg" alt="KAWS Flayed Companion Brown" class="toy-image" loading="lazy">
+          </a>
+        </div>
+        <div class="card-details">
+          <span class="item-name">FLAYED COMPANION BROWN</span>
+          <span class="item-spec">CLASSIC ANATOMY 2016</span>
         </div>
       </article>
 
     </main>
 
-    <!-- Empty State -->
     <div id="noResultsMsg" class="no-results-box" style="display:none;">
       <span>NO TOY FOUND MATCHING YOUR CRITERIA</span>
     </div>
 
-    <!-- 5. Minimal Footer -->
+    <!-- Footer ฉบับจัดตำแหน่งสมดุล 3 คอลัมน์ -->
     <footer class="site-footer">
       <div class="footer-top">
+        <!-- คอลัมน์ 1 (ซ้าย): กล่องรับข่าวสารแบบกล่องพัสดุ -->
         <div class="footer-col newsletter-col">
           <h4>SIGN UP FOR UPDATES</h4>
-          <div class="input-line">|</div>
+          <p class="footer-hint">รับแจ้งเตือนเมื่อมีของสะสม Art Toy หรืออาร์ไคฟ์ชุดใหม่</p>
+          <form class="footer-input-group" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="ENTER YOUR EMAIL..." autocomplete="off">
+            <button type="submit">JOIN</button>
+          </form>
         </div>
+
+        <!-- คอลัมน์ 2 (กลาง): เมนูนำทาง -->
         <div class="footer-col links-col">
           <h4>NAVIGATION</h4>
-          <ul>
+          <ul class="footer-links">
             <li><a href="index.html">HOME</a></li>
             <li><a href="story.html">STORY</a></li>
             <li><a href="collection.html">COLLECTION</a></li>
             <li><a href="about.html">ABOUT</a></li>
           </ul>
         </div>
+
+        <!-- คอลัมน์ 3 (ขวา): ข้อมูลโปรเจกต์ -->
         <div class="footer-col links-col">
-          <h4>PROJECT</h4>
-          <ul>
-            <li><a href="#">PERSONAL COLLECTION</a></li>
+          <h4>PROJECT DOSSIER</h4>
+          <ul class="footer-links">
+            <li><a href="#">KEB_SASOM ARCHIVE</a></li>
             <li><a href="#">SPU SDM 2026</a></li>
+            <li><a href="#">GAD23867 CODING</a></li>
+            <li><a href="#">BANGKOK, THAILAND</a></li>
           </ul>
         </div>
       </div>
 
+      <!-- แถวล่าง: โซเชียล 2 บรรทัดซ้าย + ลิขสิทธิ์ขวา -->
       <div class="footer-bottom">
-        <div class="social-icons">
-          <span>IG</span>
-          <span>TW</span>
-          <span>YT</span>
+        <div class="social-channels-stack">
+          <!-- บรรทัดที่ 1: Keb_Sasom Studio -->
+          <div class="channel-row">
+            <span class="channel-owner">KEB_SASOM :</span>
+            <a href="https://www.instagram.com/keb_sasom/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram Keb_Sasom" title="Instagram Keb_Sasom">
+              <svg viewBox="0 0 24 24" class="social-svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/keb.sasom/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook Keb_Sasom" title="Facebook Keb_Sasom">
+              <svg viewBox="0 0 24 24" class="social-svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+
+          <!-- บรรทัดที่ 2: MOS.K STUDIO -->
+          <div class="channel-row">
+            <span class="channel-owner">MOS.K STUDIO :</span>
+            <a href="https://www.instagram.com/mos.k_studio/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram MOS.K STUDIO" title="Instagram MOS.K STUDIO">
+              <svg viewBox="0 0 24 24" class="social-svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/MosKStudiopage/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook MOS.K STUDIO" title="Facebook MOS.K STUDIO">
+              <svg viewBox="0 0 24 24" class="social-svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
         </div>
-        <div class="credit">CODING FOR GRAPHIC DESIGN — MIDTERM</div>
+
+        <div class="credit">
+          &copy; 2026 KEB_SASOM STUDIO // ARCHIVED &amp; CRAFTED BY <strong class="signature-brand">MOS.K STUDIO</strong> ✦ 100% AUTHENTIC ✦ BKK.TH
+        </div>
       </div>
     </footer>
-
+    </footer>
   </div>
 
-  <!-- Slide-out Drawer Menu -->
+  <!-- Quick Drawer -->
   <aside class="quick-drawer" id="quickDrawer" aria-hidden="true">
     <div class="drawer-header">
       <span class="drawer-title">Keb_Sasom Studio // CONTROL</span>
@@ -275,11 +445,11 @@
     <div class="drawer-body">
       <div class="drawer-stat">
         <span class="stat-k">TOTAL TOYS</span>
-        <span class="stat-v" id="statCount">8 ITEMS</span>
+        <span class="stat-v" id="statCount">16 ITEMS</span>
       </div>
       <div class="drawer-stat">
         <span class="stat-k">CURATION STATUS</span>
-        <span class="stat-v">ACTIVE ARCHIVE</span>
+        <span class="stat-v">100% AUTHENTIC</span>
       </div>
       <div class="drawer-nav">
         <span class="drawer-section-label">PAGE JUMP</span>
