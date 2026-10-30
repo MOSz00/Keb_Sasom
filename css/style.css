@@ -246,14 +246,15 @@ header.top-header {
 }
 
 /* ========================================================
-   3. HERO BOX & VERTICAL CENTERED TEXT (แก้สัดส่วนให้อยู่กลางร่อง)
+   3. HERO BOX & VERTICAL CENTERED TEXT
    ======================================================== */
 .hero-box {
   position: relative;
   overflow: hidden;
   background: var(--k);
-  padding-top: clamp(40px, 5vw, 64px);
-  padding-bottom: clamp(40px, 5vw, 64px);
+  padding-top: clamp(36px, 4.5vw, 56px);
+  /* ปรับลด Padding ด้านล่างลงเหลือ 18px - 28px */
+  padding-bottom: clamp(18px, 2.5vw, 28px);
   padding-left: var(--hero-gutter);
   padding-right: var(--hero-gutter);
   border-bottom: 3px solid var(--d);
@@ -302,40 +303,174 @@ header.top-header {
 }
 
 /* ========================================================
-   STICKER LABEL (ANIMATED SLAP EFFECT)
+   PARCEL SHIPPING LABEL (.lb) - ควบคุมขนาดไม่ให้บังโลโก้ทุกไซส์
    ======================================================== */
 .lb {
   position: absolute;
-  top: 14px;
-  right: clamp(20px, 6vw, 80px);
-  width: 120px;
+  top: 6px; /* ขยับขึ้นไปชิดขอบบน */
+  right: clamp(14px, 3.5vw, 42px); /* ล็อกให้อยู่ชิดมุมขวาของร่อง */
+  width: clamp(140px, 13vw, 175px); /* ปรับความกว้างให้กะทัดรัด ไม่ยื่นเข้ามากลางกล่อง */
   background: var(--o);
   color: #161616;
-  padding: 4px 8px;
+  padding: 5px 8px 6px;
   font-family: 'Space Mono', monospace;
-  font-size: 8px;
-  line-height: 1.3;
-  z-index: 10;
-  
-  /* ค่าเริ่มต้นก่อนแอนิเมชันทำงาน (ซ่อนไว้ชั่วขณะ) */
-  opacity: 0;
-  transform-origin: center center;
-  
-  /* เรียกใช้แอนิเมชันแปะสติกเกอร์: หน่วงเวลา 0.4s เพื่อให้กล่องหลักเปิดขึ้นมาก่อน */
-  animation: stickerSlap 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+  font-size: 7px;
+  line-height: 1.25;
+  z-index: 25;
+  cursor: default;
+  user-select: none;
+  border: 1px solid rgba(42, 27, 12, 0.4);
+  box-shadow: 2px 2px 0 var(--b);
+  transform: translateY(0px) scale(1) rotate(-2deg); /* ลดองศาเอียงลง เพื่อไม่ให้มุมสติกเกอร์ทิ่มลงมาโดนโลโก้ */
+
+  /* แอนิเมชันเปิดหน้าเว็บ */
+  animation: stickerSlap 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
-.lb em { 
-  display: block; 
-  font-style: normal; 
-  text-align: right; 
+.lb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(22, 22, 22, 0.8);
+  padding-bottom: 3px;
+  margin-bottom: 3px;
 }
 
-.lb s { 
-  display: block; 
-  height: 8px; 
-  margin-top: 3px; 
-  background: repeating-linear-gradient(90deg, #161616 0 1px, transparent 1px 3px, #161616 3px 5px, transparent 5px 6px); 
+.lb-icons {
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.lb-brand {
+  font-weight: 800;
+  font-size: 6.8px;
+  letter-spacing: 0.04em;
+}
+
+.lb-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 3px;
+}
+
+.lb-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lb-key {
+  font-weight: 700;
+  opacity: 0.8;
+  font-size: 6.2px;
+}
+
+.lb-val {
+  font-weight: 700;
+  text-align: right;
+  font-size: 6.8px;
+}
+
+.lb-footer {
+  border-top: 1px dashed rgba(22, 22, 22, 0.5);
+  padding-top: 2px;
+}
+
+.lb-trk {
+  font-size: 6.2px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-align: right;
+  margin-bottom: 2px;
+}
+
+.lb s {
+  display: block;
+  height: 8px; /* ปรับบาร์โค้ดให้กะทัดรัด */
+  background: repeating-linear-gradient(
+    90deg,
+    #161616 0 1px,
+    transparent 1px 2.5px,
+    #161616 2.5px 4.5px,
+    transparent 4.5px 6px
+  );
+}
+
+/* ปรับระยะคอนเทนเนอร์รูปโลโก้ให้เว้นระยะจากขอบบน */
+.brand-title-img-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 8px; /* เว้นระยะลงมาจากขอบบนกล่อง */
+  animation: popBounce 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.brand-hero-img {
+  max-width: 88%; /* บีบให้โลโก้ไม่กางออกไปชนมุมขวา */
+  max-height: 230px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 20px rgba(42, 27, 12, 0.35));
+}
+
+/* ========================================================
+   RESPONSIVE BREAKPOINTS สำหรับตัวลาเบล (.lb)
+   ======================================================== */
+
+/* หน้าจอแท็บเล็ต / จอขนาดกลาง (601px - 900px) */
+@media (max-width: 900px) {
+  .lb {
+    top: 6px;
+    right: 20px;
+    width: 135px;
+    padding: 4px 7px;
+    transform: rotate(-1.5deg);
+  }
+  .brand-hero-img {
+    max-width: 82%;
+  }
+}
+
+/* หน้าจอโทรศัพท์มือถือ (กว้างไม่เกิน 600px - ตามในรูปภาพที่ส่งมา) */
+@media (max-width: 600px) {
+  .lb {
+    top: 6px;
+    right: 14px;
+    width: 120px; /* ลดความกว้างลงเหลือ 120px */
+    padding: 3px 6px 4px;
+    font-size: 5.8px;
+    box-shadow: 1.5px 1.5px 0 var(--b);
+    transform: rotate(-1deg);
+  }
+  .lb-icons { font-size: 6px; }
+  .lb-brand { font-size: 5.8px; }
+  .lb-key { font-size: 5.4px; }
+  .lb-val { font-size: 5.8px; }
+  .lb-trk { font-size: 5.4px; }
+  .lb s { height: 6px; }
+
+  /* ดันรูปโลโก้ลงมาเล็กน้อยเพื่อหลบมุมลาเบล */
+  .brand-title-img-wrap {
+    padding-top: 14px;
+  }
+  .brand-hero-img {
+    max-width: 84%;
+  }
+}
+
+/* หน้าจอมือถือขนาดเล็กมาก (กว้างไม่เกิน 380px) */
+@media (max-width: 380px) {
+  .lb {
+    width: 105px;
+    right: 10px;
+    top: 5px;
+    padding: 2.5px 5px;
+  }
+  .lb-body { gap: 1px; }
+  .lb s { height: 5px; }
 }
 
 /* คีย์เฟรมแอนิเมชันจังหวะแปะสติกเกอร์กระแทกกล่อง */
@@ -480,41 +615,111 @@ header.top-header {
 .mf-val { color: #CBB08B; font-weight: 400; }
 .mf-sep { display: inline-block; width: 8px; }
 
-/* PACKAGING SYMBOLS BAR */
-.packaging-symbols-bar {
+/* ========================================================
+   PACKAGING FOOTER ROW (ป้าย 404 อยู่ตำแหน่งวงแดง + 5 สัญลักษณ์อยู่ล่าง)
+   ======================================================== */
+.packaging-footer-row {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px; /* ลดระยะห่างระหว่างปุ่ม 404 กับ 5 สัญลักษณ์ลง */
+  margin-top: 10px; /* ลดระยะห่างใต้กรอบสีน้ำตาลเข้มลงเหลือ 10px */
+  padding-left: clamp(12px, 2vw, 24px);
+  position: relative;
+  z-index: 10;
+}
+
+.easter-parcel-tag {
+  display: inline-flex;
   align-items: center;
-  gap: clamp(10px, 1.8vw, 20px);
-  margin-top: 14px;
-  padding-left: clamp(8px, 1.5vw, 16px);
-  color: #382818;
+  gap: 7px;
+  background: var(--o);
+  color: #161616 !important;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1.5px dashed var(--b);
+  text-decoration: none;
+  transform: rotate(-1.5deg);
+  box-shadow: 2px 2px 0 var(--b);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag-bar-code {
+  font-weight: 900;
+  letter-spacing: -1.5px;
   opacity: 0.8;
 }
 
+.tag-arrow {
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.easter-parcel-tag:hover {
+  background: #FF7D29;
+  transform: translateY(-2px) rotate(0deg) scale(1.05);
+  box-shadow: 3px 4px 0 var(--b);
+}
+
+.easter-parcel-tag:hover .tag-arrow {
+  transform: translate(2px, -2px);
+}
+
+.easter-parcel-tag:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 1px 1px 0 var(--b);
+}
+
+/* 5 สัญลักษณ์ที่ขยับลงมาอยู่แถวล่าง */
+.packaging-symbols-bar {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.8vw, 20px);
+  color: #382818;
+  opacity: 0.85;
+}
+
+.packaging-symbols-bar {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.5vw, 16px);
+  color: #382818;
+  opacity: 0.85;
+}
+
 .packaging-symbols-bar svg {
-  width: clamp(20px, 2.5vw, 28px);
-  height: clamp(20px, 2.5vw, 28px);
+  width: clamp(16px, 1.8vw, 22px);
+  height: clamp(16px, 1.8vw, 22px);
   fill: currentColor;
   flex-shrink: 0;
   transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
-.packaging-symbols-bar svg:hover {
-  transform: translateY(-2px);
-  color: var(--o);
-  opacity: 1;
-}
-
+/* สำหรับหน้าจอมือถือ */
 @media (max-width: 600px) {
-  .packaging-symbols-bar {
-    justify-content: center;
+  .packaging-footer-row {
+    align-items: center;
+    gap: 14px;
     padding-left: 0;
     margin-top: 18px;
-    gap: 12px;
+  }
+  
+  .easter-parcel-tag {
+    font-size: 0.58rem;
+    padding: 4px 10px;
   }
 }
 
-/* MARQUEE TAPE TICKER */
+/* ========================================================
+   MARQUEE TAPE TICKER (ดึงขยับขึ้นมารับกับขอบกล่อง)
+   ======================================================== */
 .tk {
   background: var(--o);
   color: #161616;
@@ -522,19 +727,34 @@ header.top-header {
   white-space: nowrap;
   border-block: 3px solid #161616;
   transform: rotate(-1.2deg);
-  margin: -14px -10px 0;
+  /* ดึงแถบเทปส้มขึ้นมาทับเส้นขอบล่างอย่างกระชับ */
+  margin: -18px -10px 0;
   position: relative;
   z-index: 10;
 }
 
 .tk div {
   display: inline-block;
-  padding: 8px 0;
+  padding: 6px 0; /* ปรับลด Padding ให้แถบเทปดูเพรียวกระชับ */
   font-family: 'Kanit', sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13.5px;
   letter-spacing: 0.08em;
   animation: mq 35s linear infinite;
+}
+
+/* สำหรับจอมือถือ */
+@media (max-width: 600px) {
+  .hero-box {
+    padding-bottom: 16px;
+  }
+  .packaging-footer-row {
+    margin-top: 8px;
+    gap: 8px;
+  }
+  .tk {
+    margin-top: -14px;
+  }
 }
 
 @keyframes mq {
