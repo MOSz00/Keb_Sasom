@@ -303,7 +303,7 @@ header.top-header {
 }
 
 /* ========================================================
-   PARCEL SHIPPING LABEL (.lb) - ควบคุมขนาดไม่ให้บังโลโก้ทุกไซส์
+   PARCEL SHIPPING LABEL (.lb) 
    ======================================================== */
 .lb {
   position: absolute;
@@ -718,7 +718,7 @@ header.top-header {
 }
 
 /* ========================================================
-   MARQUEE TAPE TICKER (ดึงขยับขึ้นมารับกับขอบกล่อง)
+   MARQUEE TAPE TICKER 
    ======================================================== */
 .tk {
   background: var(--o);
@@ -727,7 +727,6 @@ header.top-header {
   white-space: nowrap;
   border-block: 3px solid #161616;
   transform: rotate(-1.2deg);
-  /* ดึงแถบเทปส้มขึ้นมาทับเส้นขอบล่างอย่างกระชับ */
   margin: -18px -10px 0;
   position: relative;
   z-index: 10;
@@ -735,7 +734,7 @@ header.top-header {
 
 .tk div {
   display: inline-block;
-  padding: 6px 0; /* ปรับลด Padding ให้แถบเทปดูเพรียวกระชับ */
+  padding: 6px 0; 
   font-family: 'Kanit', sans-serif;
   font-weight: 700;
   font-size: 13.5px;
